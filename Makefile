@@ -3,6 +3,7 @@ setup:
 	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
 	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
 	docker run -it --privileged -d -t --name attacker -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
+	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
 	docker run -it --privileged -d -t --name access -v $(PWD):/root khooi8913/bmv2:latest /bin/bash
 	docker run -it --privileged -d -t --name border -v $(PWD):/root khooi8913/bmv2:latest /bin/bash
 
@@ -17,24 +18,47 @@ setup:
 	sudo ./connect_containers_veth.sh access host1 port1 veth0
 	sudo ./connect_containers_veth.sh access host2 port2 veth0
 	sudo ./connect_containers_veth.sh access border port3 port2
+	sudo ./connect_containers_veth.sh border internet port1 internet1
+	sudo ./connect_containers_veth.sh internet attacker internet2 veth0
 
-	# ip addr configuration
+	# host ip addr configuration
 	docker exec host1 ip addr add 192.168.1.1/24 dev veth0
 	docker exec host2 ip addr add 192.168.1.2/24 dev veth0
+	docker exec attacker ip addr add 192.168.1.3/24 dev veth0
+	
+	# host default route configuration
+	docker exec host1 ip route add default via 192.168.1.254
+	docker exec host2 ip route add default via 192.168.1.254
+	docker exec attacker ip route add default via 192.168.1.254
 
-	# setup access router
+	# setup access router (TODO)
 	docker exec access simple_switch -i 1@port1 -i 2@port2 docker.json &
+
+	# setup border router (TODO)
+	docker exec border simple_switch -i 1@port1 -i 2@port2 docker.json &
+	
+	# setup internet router
+	docker exec internet ip link add name br0 type bridge
+	docker exec internet ip link set br0 up
+	docker exec internet ip link set internet1 master br0
+	docker exec internet ip link set internet2 master br0
+	docker exec internet ip addr add 192.168.1.254/24 dev br0
+	docker exec internet iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 	# disable offloading
 	docker exec host1 ethtool -K veth0 rx off tx off
 	docker exec host2 ethtool -K veth0 rx off tx off
+	docker exec attacker ethtool -K veth0 rx off tx off
 
 	# run iperf3
 	docker exec host1 bash -c "iperf3 -s > host1.log &" &
 	docker exec host2 bash -c "iperf3 -c 192.168.1.1 -t 10000 -i 0.1 > host2.log &" &
 	
+	# test internet connectivity
+	docker exec attacker bash -c "ping 1.1.1.1 -c 1"
+	
 
 teardown:
-	docker stop host1 host2 attacker access border
-	docker rm host1 host2 attacker access border
+	docker stop host1 host2 attacker access border internet
+	docker rm host1 host2 attacker access border internet
 	rm -f host*.log
