@@ -51,8 +51,8 @@ setup:
 	docker exec attacker ethtool -K veth0 rx off tx off
 
 	# run iperf3
-	docker exec host1 bash -c "iperf3 -s > host1.log &" &
-	docker exec host2 bash -c "iperf3 -c 192.168.1.1 -t 10000 -i 0.1 > host2.log &" &
+	docker exec host1 bash -c "iperf3 -s > host1.log &"
+	docker exec host2 bash -c "iperf3 -c 192.168.1.1 -t 10000 -i 0.1 > host2.log &"
 	
 	# test internet connectivity
 	docker exec attacker bash -c "ping 1.1.1.1 -c 1"
