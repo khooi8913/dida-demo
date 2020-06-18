@@ -37,10 +37,10 @@ setup:
 	docker exec attacker ip route add default via 192.168.1.254
 
 	# setup access router
-	docker exec access simple_switch -i 1@port1 -i 2@port2 -i 3@port3 access.json &
+	docker exec access bash -c "simple_switch -i 1@port1 -i 2@port2 -i 3@port3 access.json &"
 
 	# setup border router
-	docker exec border simple_switch -i 1@port1 -i 2@port2 border.json &
+	docker exec border bash -c "simple_switch -i 1@port1 -i 2@port2 border.json &"
 	
 	# setup internet router
 	docker exec internet ip link add name br0 type bridge
@@ -70,10 +70,17 @@ setup:
 	docker exec host2 ethtool -K veth0 rx off tx off
 	docker exec attacker ethtool -K veth0 rx off tx off
 
+	# configure access and border
+	docker exec access bash -c "simple_switch_CLI < access.config"
+	docker exec border bash -c "simple_switch_CLI < border.config"
+
 	# test internet connectivity
 	docker exec host1 bash -c "ping 1.1.1.1 -c 1"
+	docker exec host1 bash -c "ping www.google.com -c 1"
 	docker exec host2 bash -c "ping 1.1.1.1 -c 1"
+	docker exec host2 bash -c "ping www.google.com -c 1"
 	docker exec attacker bash -c "ping 1.1.1.1 -c 1"
+	docker exec attacker bash -c "ping www.google.com -c 1"
 	
 	# run iperf3
 	docker exec attacker bash -c "iperf3 -s &"
