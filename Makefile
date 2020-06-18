@@ -17,9 +17,14 @@ setup:
 	# create new interfaces and connect them
 	sudo ./connect_containers_veth.sh access host1 port1 veth0
 	sudo ./connect_containers_veth.sh access host2 port2 veth0
-	sudo ./connect_containers_veth.sh access border port3 port2
-	sudo ./connect_containers_veth.sh border internet port1 internet1
+	sudo ./connect_containers_veth.sh access border port3 port1
+	sudo ./connect_containers_veth.sh border internet port2 internet1
 	sudo ./connect_containers_veth.sh internet attacker internet2 veth0
+
+	# host mac addr configuration
+	docker exec host1 ip link set veth0 address 00:00:00:00:00:01
+	docker exec host2 ip link set veth0 address 00:00:00:00:00:02
+	docker exec attacker ip link set veth0 address 00:00:00:00:00:03
 
 	# host ip addr configuration
 	docker exec host1 ip addr add 192.168.1.1/24 dev veth0
@@ -31,31 +36,49 @@ setup:
 	docker exec host2 ip route add default via 192.168.1.254
 	docker exec attacker ip route add default via 192.168.1.254
 
-	# setup access router (TODO)
-	docker exec access simple_switch -i 1@port1 -i 2@port2 docker.json &
+	# setup access router
+	docker exec access simple_switch -i 1@port1 -i 2@port2 -i 3@port3 access.json &
 
-	# setup border router (TODO)
-	docker exec border simple_switch -i 1@port1 -i 2@port2 docker.json &
+	# setup border router
+	docker exec border simple_switch -i 1@port1 -i 2@port2 border.json &
 	
 	# setup internet router
 	docker exec internet ip link add name br0 type bridge
+	docker exec internet ip link set br0 address 00:00:00:00:00:AA
 	docker exec internet ip link set br0 up
 	docker exec internet ip link set internet1 master br0
 	docker exec internet ip link set internet2 master br0
 	docker exec internet ip addr add 192.168.1.254/24 dev br0
 	docker exec internet iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
+	# static arp entries
+	docker exec host1 arp -s 192.168.1.2 00:00:00:00:00:02
+	docker exec host1 arp -s 192.168.1.3 00:00:00:00:00:03
+	docker exec host1 arp -s 192.168.1.254 00:00:00:00:00:AA
+	docker exec host2 arp -s 192.168.1.1 00:00:00:00:00:01
+	docker exec host2 arp -s 192.168.1.3 00:00:00:00:00:03
+	docker exec host2 arp -s 192.168.1.254 00:00:00:00:00:AA
+	docker exec attacker arp -s 192.168.1.1 00:00:00:00:00:01
+	docker exec attacker arp -s 192.168.1.2 00:00:00:00:00:02
+	docker exec attacker arp -s 192.168.1.254 00:00:00:00:00:AA
+	docker exec internet arp -s 192.168.1.1 00:00:00:00:00:01
+	docker exec internet arp -s 192.168.1.2 00:00:00:00:00:02
+	docker exec internet arp -s 192.168.1.3 00:00:00:00:00:03
+
 	# disable offloading
 	docker exec host1 ethtool -K veth0 rx off tx off
 	docker exec host2 ethtool -K veth0 rx off tx off
 	docker exec attacker ethtool -K veth0 rx off tx off
 
-	# run iperf3
-	docker exec host1 bash -c "iperf3 -s > host1.log &"
-	docker exec host2 bash -c "iperf3 -c 192.168.1.1 -t 10000 -i 0.1 > host2.log &"
-	
 	# test internet connectivity
+	docker exec host1 bash -c "ping 1.1.1.1 -c 1"
+	docker exec host2 bash -c "ping 1.1.1.1 -c 1"
 	docker exec attacker bash -c "ping 1.1.1.1 -c 1"
+	
+	# run iperf3
+	docker exec attacker bash -c "iperf3 -s &"
+	docker exec host1 bash -c "iperf3 -c 192.168.1.3 -i 0.1"
+	docker exec host2 bash -c "iperf3 -c 192.168.1.3 -i 0.1"
 	
 
 teardown:
