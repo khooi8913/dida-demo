@@ -1,4 +1,8 @@
 setup:
+	# make sure that we have the latest images
+	docker pull khooi8913/debian_networking:latest
+	docker pull khooi8913/bmv2:latest
+
 	# spin up the containers
 	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
 	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
@@ -86,7 +90,7 @@ setup:
 	docker exec attacker bash -c "iperf3 -s &"
 	docker exec host1 bash -c "iperf3 -c 192.168.1.3 -i 0.1"
 	docker exec host2 bash -c "iperf3 -c 192.168.1.3 -i 0.1"
-	
+
 
 teardown:
 	docker stop host1 host2 attacker access border internet
