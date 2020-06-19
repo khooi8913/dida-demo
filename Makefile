@@ -1,22 +1,24 @@
 setup:
 	# make sure that we have the latest images
-	docker pull khooi8913/debian_networking:latest
-	docker pull khooi8913/bmv2:latest
+	docker pull khooi8913/debian_networking:sysstat
+	docker pull khooi8913/bmv2:sysstat
+	docker pull khooi8913/grafana:dida
 
 	# spin up the containers
-	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
-	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
-	docker run -it --privileged -d -t --name attacker -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
-	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
-	docker run -it --privileged -d -t --name access -v $(PWD):/root khooi8913/bmv2:latest /bin/bash
-	docker run -it --privileged -d -t --name border -v $(PWD):/root khooi8913/bmv2:latest /bin/bash
+	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:sysstat /bin/bash
+	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:sysstat /bin/bash
+	docker run -it --privileged -d -t --name attacker -v $(PWD):/root khooi8913/debian_networking:sysstat /bin/bash
+	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:sysstat /bin/bash
+	docker run -it --privileged -d -t --name access -v $(PWD):/root khooi8913/bmv2:sysstat /bin/bash
+	docker run -it --privileged -d -t --name border -v $(PWD):/root khooi8913/bmv2:sysstat /bin/bash
+	docker run -it -d -t --name grafana -p 3000:3000 khooi8913/grafana:dida 
 
 	# remove the existing interface
 	docker exec host1 ip link delete eth0
 	docker exec host2 ip link delete eth0
 	docker exec attacker ip link delete eth0
-	docker exec access ip link delete eth0
-	docker exec border ip link delete eth0
+	# docker exec access ip link delete eth0
+	# docker exec border ip link delete eth0
 
 	# create new interfaces and connect them
 	sudo ./connect_containers_veth.sh access host1 port1 veth0
@@ -78,6 +80,11 @@ setup:
 	docker exec access bash -c "simple_switch_CLI < access.config"
 	docker exec border bash -c "simple_switch_CLI < border.config"
 
+	# monitor
+	docker exec access bash -c "HOSTNAME=access; bash monitor.sh > /tmp/monitor.log &"
+	docker exec border bash -c "HOSTNAME=border; bash monitor.sh > /tmp/monitor.log &"
+	docker exec internet bash -c "HOSTNAME=internet; bash monitor.sh > /tmp/monitor.log &"
+
 	# test internet connectivity
 	docker exec host1 bash -c "ping 1.1.1.1 -c 1"
 	docker exec host1 bash -c "ping www.google.com -c 1"
@@ -86,13 +93,13 @@ setup:
 	docker exec attacker bash -c "ping 1.1.1.1 -c 1"
 	docker exec attacker bash -c "ping www.google.com -c 1"
 	
-	# run iperf3
+	# # run iperf3
 	docker exec attacker bash -c "iperf3 -s &"
-	docker exec host1 bash -c "iperf3 -c 192.168.1.3 -i 0.1"
-	docker exec host2 bash -c "iperf3 -c 192.168.1.3 -i 0.1"
+	docker exec host1 bash -c "iperf3 -c 192.168.1.3"
+	docker exec host2 bash -c "iperf3 -c 192.168.1.3"
 
 
 teardown:
-	docker stop host1 host2 attacker access border internet
-	docker rm host1 host2 attacker access border internet
-	rm -f host*.log
+	docker stop host1 host2 attacker access border internet grafana
+	docker rm host1 host2 attacker access border internet grafana
+	rm -f host*.log *.out
