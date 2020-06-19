@@ -1508,7 +1508,7 @@
       ]
     },
     {
-      "name" : "border154",
+      "name" : "border156",
       "id" : 6,
       "runtime_data" : [],
       "primitives" : [
@@ -1526,7 +1526,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 154,
+            "line" : 156,
             "column" : 16,
             "source_fragment" : "ipToWrite = hdr.ipv4.srcAddr"
           }
@@ -1545,7 +1545,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 155,
+            "line" : 157,
             "column" : 16,
             "source_fragment" : "meta.addedToBl = 1"
           }
@@ -1553,7 +1553,7 @@
       ]
     },
     {
-      "name" : "border157",
+      "name" : "border159",
       "id" : 7,
       "runtime_data" : [],
       "primitives" : [
@@ -1571,7 +1571,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 157,
+            "line" : 159,
             "column" : 16,
             "source_fragment" : "ipToWrite = meta.value_bl0"
           }
@@ -1579,7 +1579,7 @@
       ]
     },
     {
-      "name" : "border147",
+      "name" : "border149",
       "id" : 8,
       "runtime_data" : [],
       "primitives" : [
@@ -1605,7 +1605,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 147,
+            "line" : 149,
             "column" : 12,
             "source_fragment" : "hash(meta.index_bl0, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.srcAddr, 32w0xAAAAAAAA}, (bit<32>)3200)"
           }
@@ -1628,7 +1628,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 147,
+            "line" : 149,
             "column" : 116,
             "source_fragment" : "bl0.read(meta.value_bl0, meta.index_bl0)"
           }
@@ -1655,7 +1655,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 148,
+            "line" : 150,
             "column" : 12,
             "source_fragment" : "hash(meta.index_bl1, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.srcAddr, 32w0xBBBBBBBB}, (bit<32>)3200)"
           }
@@ -1678,7 +1678,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 148,
+            "line" : 150,
             "column" : 116,
             "source_fragment" : "bl1.read(meta.value_bl1, meta.index_bl1)"
           }
@@ -1705,7 +1705,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 149,
+            "line" : 151,
             "column" : 12,
             "source_fragment" : "hash(meta.index_bl2, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.srcAddr, 32w0xCCCCCCCC}, (bit<32>)3200)"
           }
@@ -1728,7 +1728,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 149,
+            "line" : 151,
             "column" : 116,
             "source_fragment" : "bl2.read(meta.value_bl2, meta.index_bl2)"
           }
@@ -1755,7 +1755,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 150,
+            "line" : 152,
             "column" : 12,
             "source_fragment" : "hash(meta.index_bl3, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.srcAddr, 32w0xDDDDDDDD}, (bit<32>)3200)"
           }
@@ -1778,7 +1778,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 150,
+            "line" : 152,
             "column" : 116,
             "source_fragment" : "bl3.read(meta.value_bl3, meta.index_bl3)"
           }
@@ -1786,7 +1786,7 @@
       ]
     },
     {
-      "name" : "border163",
+      "name" : "border165",
       "id" : 9,
       "runtime_data" : [],
       "primitives" : [
@@ -1804,7 +1804,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 163,
+            "line" : 165,
             "column" : 16,
             "source_fragment" : "ipToWrite = hdr.ipv4.srcAddr"
           }
@@ -1823,7 +1823,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 164,
+            "line" : 166,
             "column" : 16,
             "source_fragment" : "meta.addedToBl = 1"
           }
@@ -1831,7 +1831,7 @@
       ]
     },
     {
-      "name" : "border166",
+      "name" : "border168",
       "id" : 10,
       "runtime_data" : [],
       "primitives" : [
@@ -1849,7 +1849,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 166,
+            "line" : 168,
             "column" : 16,
             "source_fragment" : "ipToWrite = meta.value_bl1"
           }
@@ -1857,7 +1857,7 @@
       ]
     },
     {
-      "name" : "border159",
+      "name" : "border161",
       "id" : 11,
       "runtime_data" : [],
       "primitives" : [
@@ -1879,7 +1879,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 159,
+            "line" : 161,
             "column" : 12,
             "source_fragment" : "bl0.write(meta.index_bl0, ipToWrite)"
           }
@@ -1887,7 +1887,7 @@
       ]
     },
     {
-      "name" : "border172",
+      "name" : "border174",
       "id" : 12,
       "runtime_data" : [],
       "primitives" : [
@@ -1905,7 +1905,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 172,
+            "line" : 174,
             "column" : 16,
             "source_fragment" : "ipToWrite = hdr.ipv4.srcAddr"
           }
@@ -1924,7 +1924,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 173,
+            "line" : 175,
             "column" : 16,
             "source_fragment" : "meta.addedToBl = 1"
           }
@@ -1932,7 +1932,7 @@
       ]
     },
     {
-      "name" : "border175",
+      "name" : "border177",
       "id" : 13,
       "runtime_data" : [],
       "primitives" : [
@@ -1950,7 +1950,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 175,
+            "line" : 177,
             "column" : 16,
             "source_fragment" : "ipToWrite = meta.value_bl2"
           }
@@ -1958,7 +1958,7 @@
       ]
     },
     {
-      "name" : "border168",
+      "name" : "border170",
       "id" : 14,
       "runtime_data" : [],
       "primitives" : [
@@ -1980,7 +1980,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 168,
+            "line" : 170,
             "column" : 12,
             "source_fragment" : "bl1.write(meta.index_bl1, ipToWrite)"
           }
@@ -1988,7 +1988,7 @@
       ]
     },
     {
-      "name" : "border181",
+      "name" : "border183",
       "id" : 15,
       "runtime_data" : [],
       "primitives" : [
@@ -2006,7 +2006,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 181,
+            "line" : 183,
             "column" : 16,
             "source_fragment" : "ipToWrite = hdr.ipv4.srcAddr"
           }
@@ -2025,7 +2025,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 182,
+            "line" : 184,
             "column" : 16,
             "source_fragment" : "meta.addedToBl = 1"
           }
@@ -2033,7 +2033,7 @@
       ]
     },
     {
-      "name" : "border184",
+      "name" : "border186",
       "id" : 16,
       "runtime_data" : [],
       "primitives" : [
@@ -2051,7 +2051,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 184,
+            "line" : 186,
             "column" : 16,
             "source_fragment" : "ipToWrite = meta.value_bl3"
           }
@@ -2059,7 +2059,7 @@
       ]
     },
     {
-      "name" : "border177",
+      "name" : "border179",
       "id" : 17,
       "runtime_data" : [],
       "primitives" : [
@@ -2081,7 +2081,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 177,
+            "line" : 179,
             "column" : 12,
             "source_fragment" : "bl2.write(meta.index_bl2, ipToWrite)"
           }
@@ -2089,7 +2089,7 @@
       ]
     },
     {
-      "name" : "border186",
+      "name" : "border188",
       "id" : 18,
       "runtime_data" : [],
       "primitives" : [
@@ -2111,7 +2111,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 186,
+            "line" : 188,
             "column" : 12,
             "source_fragment" : "bl3.write(meta.index_bl3, ipToWrite)"
           }
@@ -2151,7 +2151,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 207,
+            "line" : 209,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch0, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xAAAAAAAAAAAAAAAA}, (bit<32>)4096)"
           }
@@ -2174,7 +2174,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 207,
+            "line" : 209,
             "column" : 143,
             "source_fragment" : "sketch0.read(meta.value_sketch0, meta.index_sketch0)"
           }
@@ -2216,7 +2216,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 207,
+            "line" : 209,
             "column" : 197,
             "source_fragment" : "meta.value_sketch0 = meta.value_sketch0 +1"
           }
@@ -2239,7 +2239,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 207,
+            "line" : 209,
             "column" : 241,
             "source_fragment" : "sketch0.write(meta.index_sketch0, meta.value_sketch0)"
           }
@@ -2266,7 +2266,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 208,
+            "line" : 210,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch1, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xBBBBBBBBBBBBBBBB}, (bit<32>)4096)"
           }
@@ -2289,7 +2289,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 208,
+            "line" : 210,
             "column" : 143,
             "source_fragment" : "sketch1.read(meta.value_sketch1, meta.index_sketch1)"
           }
@@ -2331,7 +2331,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 208,
+            "line" : 210,
             "column" : 197,
             "source_fragment" : "meta.value_sketch1 = meta.value_sketch1 +1"
           }
@@ -2354,7 +2354,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 208,
+            "line" : 210,
             "column" : 241,
             "source_fragment" : "sketch1.write(meta.index_sketch1, meta.value_sketch1)"
           }
@@ -2381,7 +2381,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 209,
+            "line" : 211,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch2, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xCCCCCCCCCCCCCCCC}, (bit<32>)4096)"
           }
@@ -2404,7 +2404,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 209,
+            "line" : 211,
             "column" : 143,
             "source_fragment" : "sketch2.read(meta.value_sketch2, meta.index_sketch2)"
           }
@@ -2446,7 +2446,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 209,
+            "line" : 211,
             "column" : 197,
             "source_fragment" : "meta.value_sketch2 = meta.value_sketch2 +1"
           }
@@ -2469,7 +2469,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 209,
+            "line" : 211,
             "column" : 241,
             "source_fragment" : "sketch2.write(meta.index_sketch2, meta.value_sketch2)"
           }
@@ -2496,7 +2496,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 210,
+            "line" : 212,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch3, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xDDDDDDDDDDDDDDDD}, (bit<32>)4096)"
           }
@@ -2519,7 +2519,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 210,
+            "line" : 212,
             "column" : 143,
             "source_fragment" : "sketch3.read(meta.value_sketch3, meta.index_sketch3)"
           }
@@ -2561,7 +2561,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 210,
+            "line" : 212,
             "column" : 197,
             "source_fragment" : "meta.value_sketch3 = meta.value_sketch3 +1"
           }
@@ -2584,7 +2584,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 210,
+            "line" : 212,
             "column" : 241,
             "source_fragment" : "sketch3.write(meta.index_sketch3, meta.value_sketch3)"
           }
@@ -2611,7 +2611,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 211,
+            "line" : 213,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch4, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xEEEEEEEEEEEEEEEE}, (bit<32>)4096)"
           }
@@ -2634,7 +2634,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 211,
+            "line" : 213,
             "column" : 143,
             "source_fragment" : "sketch4.read(meta.value_sketch4, meta.index_sketch4)"
           }
@@ -2676,7 +2676,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 211,
+            "line" : 213,
             "column" : 197,
             "source_fragment" : "meta.value_sketch4 = meta.value_sketch4 +1"
           }
@@ -2699,7 +2699,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 211,
+            "line" : 213,
             "column" : 241,
             "source_fragment" : "sketch4.write(meta.index_sketch4, meta.value_sketch4)"
           }
@@ -2726,7 +2726,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 212,
+            "line" : 214,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch5, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xFFFFFFFFFFFFFFFF}, (bit<32>)4096)"
           }
@@ -2749,7 +2749,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 212,
+            "line" : 214,
             "column" : 143,
             "source_fragment" : "sketch5.read(meta.value_sketch5, meta.index_sketch5)"
           }
@@ -2791,7 +2791,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 212,
+            "line" : 214,
             "column" : 197,
             "source_fragment" : "meta.value_sketch5 = meta.value_sketch5 +1"
           }
@@ -2814,7 +2814,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 212,
+            "line" : 214,
             "column" : 241,
             "source_fragment" : "sketch5.write(meta.index_sketch5, meta.value_sketch5)"
           }
@@ -2844,7 +2844,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 216,
+            "line" : 218,
             "column" : 8,
             "source_fragment" : "SUSPICIOUS_THRESHOLD.read(meta.suspicious_threshold, 0)"
           }
@@ -2863,7 +2863,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 218,
+            "line" : 220,
             "column" : 8,
             "source_fragment" : "meta.sketch_min = 1<<31"
           }
@@ -2890,7 +2890,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 219,
+            "line" : 221,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch0, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xAAAAAAAAAAAAAAAA}, (bit<32>)4096)"
           }
@@ -2913,7 +2913,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 219,
+            "line" : 221,
             "column" : 143,
             "source_fragment" : "sketch0.read(meta.value_sketch0, meta.index_sketch0)"
           }
@@ -2959,7 +2959,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 219,
+            "line" : 221,
             "column" : 197,
             "source_fragment" : "meta.sketch_min ="
           }
@@ -2986,7 +2986,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 220,
+            "line" : 222,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch1, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xBBBBBBBBBBBBBBBB}, (bit<32>)4096)"
           }
@@ -3009,7 +3009,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 220,
+            "line" : 222,
             "column" : 143,
             "source_fragment" : "sketch1.read(meta.value_sketch1, meta.index_sketch1)"
           }
@@ -3103,7 +3103,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 220,
+            "line" : 222,
             "column" : 197,
             "source_fragment" : "meta.sketch_min ="
           }
@@ -3130,7 +3130,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 221,
+            "line" : 223,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch2, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xCCCCCCCCCCCCCCCC}, (bit<32>)4096)"
           }
@@ -3153,7 +3153,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 221,
+            "line" : 223,
             "column" : 143,
             "source_fragment" : "sketch2.read(meta.value_sketch2, meta.index_sketch2)"
           }
@@ -3343,7 +3343,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 221,
+            "line" : 223,
             "column" : 197,
             "source_fragment" : "meta.sketch_min ="
           }
@@ -3370,7 +3370,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 222,
+            "line" : 224,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch3, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xDDDDDDDDDDDDDDDD}, (bit<32>)4096)"
           }
@@ -3393,7 +3393,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 222,
+            "line" : 224,
             "column" : 143,
             "source_fragment" : "sketch3.read(meta.value_sketch3, meta.index_sketch3)"
           }
@@ -3775,7 +3775,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 222,
+            "line" : 224,
             "column" : 197,
             "source_fragment" : "meta.sketch_min ="
           }
@@ -3802,7 +3802,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 223,
+            "line" : 225,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch4, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xEEEEEEEEEEEEEEEE}, (bit<32>)4096)"
           }
@@ -3825,7 +3825,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 223,
+            "line" : 225,
             "column" : 143,
             "source_fragment" : "sketch4.read(meta.value_sketch4, meta.index_sketch4)"
           }
@@ -4591,7 +4591,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 223,
+            "line" : 225,
             "column" : 197,
             "source_fragment" : "meta.sketch_min ="
           }
@@ -4618,7 +4618,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 224,
+            "line" : 226,
             "column" : 8,
             "source_fragment" : "hash(meta.index_sketch5, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.dstAddr, hdr.ipv4.srcAddr, 64w0xFFFFFFFFFFFFFFFF}, (bit<32>)4096)"
           }
@@ -4641,7 +4641,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 224,
+            "line" : 226,
             "column" : 143,
             "source_fragment" : "sketch5.read(meta.value_sketch5, meta.index_sketch5)"
           }
@@ -6175,7 +6175,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 224,
+            "line" : 226,
             "column" : 197,
             "source_fragment" : "meta.sketch_min ="
           }
@@ -7749,7 +7749,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 234,
+            "line" : 236,
             "column" : 8,
             "source_fragment" : "hdr.ctrl.setValid()"
           }
@@ -7768,7 +7768,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 236,
+            "line" : 238,
             "column" : 8,
             "source_fragment" : "hdr.ctrl.routerId = 8w0x1"
           }
@@ -7787,7 +7787,7 @@
           ],
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 237,
+            "line" : 239,
             "column" : 8,
             "source_fragment" : "hdr.ctrl.counterValue = meta.sketch_min"
           }
@@ -7926,8 +7926,8 @@
           "id" : 1,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 137,
-            "column" : 12,
+            "line" : 138,
+            "column" : 16,
             "source_fragment" : "verify_traffic_source()"
           },
           "key" : [],
@@ -7939,9 +7939,9 @@
           "direct_meters" : null,
           "action_ids" : [4],
           "actions" : ["MyIngress.verify_traffic_source"],
-          "base_default_next" : "node_5",
+          "base_default_next" : "node_6",
           "next_tables" : {
-            "MyIngress.verify_traffic_source" : "node_5"
+            "MyIngress.verify_traffic_source" : "node_6"
           },
           "default_entry" : {
             "action_id" : 4,
@@ -7955,8 +7955,8 @@
           "id" : 2,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 139,
-            "column" : 16,
+            "line" : 140,
+            "column" : 20,
             "source_fragment" : "drop()"
           },
           "key" : [],
@@ -7980,11 +7980,11 @@
           }
         },
         {
-          "name" : "tbl_border147",
+          "name" : "tbl_border149",
           "id" : 3,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 147,
+            "line" : 149,
             "column" : 12,
             "source_fragment" : "hash(meta.index_bl0, HashAlgorithm.crc32, (bit<32>)0, {hdr.ipv4.srcAddr, 32w0xAAAAAAAA}, (bit<32>)3200);bl0.read(meta.value_bl0, meta.index_bl0); ..."
           },
@@ -7996,10 +7996,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [8],
-          "actions" : ["border147"],
-          "base_default_next" : "node_9",
+          "actions" : ["border149"],
+          "base_default_next" : "node_10",
           "next_tables" : {
-            "border147" : "node_9"
+            "border149" : "node_10"
           },
           "default_entry" : {
             "action_id" : 8,
@@ -8009,11 +8009,11 @@
           }
         },
         {
-          "name" : "tbl_border154",
+          "name" : "tbl_border156",
           "id" : 4,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 154,
+            "line" : 156,
             "column" : 26,
             "source_fragment" : "= hdr.ipv4.srcAddr; ..."
           },
@@ -8025,10 +8025,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [6],
-          "actions" : ["border154"],
-          "base_default_next" : "tbl_border159",
+          "actions" : ["border156"],
+          "base_default_next" : "tbl_border161",
           "next_tables" : {
-            "border154" : "tbl_border159"
+            "border156" : "tbl_border161"
           },
           "default_entry" : {
             "action_id" : 6,
@@ -8038,11 +8038,11 @@
           }
         },
         {
-          "name" : "tbl_border157",
+          "name" : "tbl_border159",
           "id" : 5,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 157,
+            "line" : 159,
             "column" : 26,
             "source_fragment" : "="
           },
@@ -8054,10 +8054,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [7],
-          "actions" : ["border157"],
-          "base_default_next" : "tbl_border159",
+          "actions" : ["border159"],
+          "base_default_next" : "tbl_border161",
           "next_tables" : {
-            "border157" : "tbl_border159"
+            "border159" : "tbl_border161"
           },
           "default_entry" : {
             "action_id" : 7,
@@ -8067,11 +8067,11 @@
           }
         },
         {
-          "name" : "tbl_border159",
+          "name" : "tbl_border161",
           "id" : 6,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 159,
+            "line" : 161,
             "column" : 12,
             "source_fragment" : "bl0.write(meta.index_bl0, ipToWrite)"
           },
@@ -8083,10 +8083,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [11],
-          "actions" : ["border159"],
-          "base_default_next" : "node_13",
+          "actions" : ["border161"],
+          "base_default_next" : "node_14",
           "next_tables" : {
-            "border159" : "node_13"
+            "border161" : "node_14"
           },
           "default_entry" : {
             "action_id" : 11,
@@ -8096,11 +8096,11 @@
           }
         },
         {
-          "name" : "tbl_border163",
+          "name" : "tbl_border165",
           "id" : 7,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 163,
+            "line" : 165,
             "column" : 26,
             "source_fragment" : "= hdr.ipv4.srcAddr; ..."
           },
@@ -8112,10 +8112,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [9],
-          "actions" : ["border163"],
-          "base_default_next" : "tbl_border168",
+          "actions" : ["border165"],
+          "base_default_next" : "tbl_border170",
           "next_tables" : {
-            "border163" : "tbl_border168"
+            "border165" : "tbl_border170"
           },
           "default_entry" : {
             "action_id" : 9,
@@ -8125,11 +8125,11 @@
           }
         },
         {
-          "name" : "tbl_border166",
+          "name" : "tbl_border168",
           "id" : 8,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 166,
+            "line" : 168,
             "column" : 26,
             "source_fragment" : "="
           },
@@ -8141,10 +8141,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [10],
-          "actions" : ["border166"],
-          "base_default_next" : "tbl_border168",
+          "actions" : ["border168"],
+          "base_default_next" : "tbl_border170",
           "next_tables" : {
-            "border166" : "tbl_border168"
+            "border168" : "tbl_border170"
           },
           "default_entry" : {
             "action_id" : 10,
@@ -8154,11 +8154,11 @@
           }
         },
         {
-          "name" : "tbl_border168",
+          "name" : "tbl_border170",
           "id" : 9,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 168,
+            "line" : 170,
             "column" : 12,
             "source_fragment" : "bl1.write(meta.index_bl1, ipToWrite)"
           },
@@ -8170,10 +8170,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [14],
-          "actions" : ["border168"],
-          "base_default_next" : "node_17",
+          "actions" : ["border170"],
+          "base_default_next" : "node_18",
           "next_tables" : {
-            "border168" : "node_17"
+            "border170" : "node_18"
           },
           "default_entry" : {
             "action_id" : 14,
@@ -8183,11 +8183,11 @@
           }
         },
         {
-          "name" : "tbl_border172",
+          "name" : "tbl_border174",
           "id" : 10,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 172,
+            "line" : 174,
             "column" : 26,
             "source_fragment" : "= hdr.ipv4.srcAddr; ..."
           },
@@ -8199,10 +8199,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [12],
-          "actions" : ["border172"],
-          "base_default_next" : "tbl_border177",
+          "actions" : ["border174"],
+          "base_default_next" : "tbl_border179",
           "next_tables" : {
-            "border172" : "tbl_border177"
+            "border174" : "tbl_border179"
           },
           "default_entry" : {
             "action_id" : 12,
@@ -8212,11 +8212,11 @@
           }
         },
         {
-          "name" : "tbl_border175",
+          "name" : "tbl_border177",
           "id" : 11,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 175,
+            "line" : 177,
             "column" : 26,
             "source_fragment" : "="
           },
@@ -8228,10 +8228,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [13],
-          "actions" : ["border175"],
-          "base_default_next" : "tbl_border177",
+          "actions" : ["border177"],
+          "base_default_next" : "tbl_border179",
           "next_tables" : {
-            "border175" : "tbl_border177"
+            "border177" : "tbl_border179"
           },
           "default_entry" : {
             "action_id" : 13,
@@ -8241,11 +8241,11 @@
           }
         },
         {
-          "name" : "tbl_border177",
+          "name" : "tbl_border179",
           "id" : 12,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 177,
+            "line" : 179,
             "column" : 12,
             "source_fragment" : "bl2.write(meta.index_bl2, ipToWrite)"
           },
@@ -8257,10 +8257,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [17],
-          "actions" : ["border177"],
-          "base_default_next" : "node_21",
+          "actions" : ["border179"],
+          "base_default_next" : "node_22",
           "next_tables" : {
-            "border177" : "node_21"
+            "border179" : "node_22"
           },
           "default_entry" : {
             "action_id" : 17,
@@ -8270,11 +8270,11 @@
           }
         },
         {
-          "name" : "tbl_border181",
+          "name" : "tbl_border183",
           "id" : 13,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 181,
+            "line" : 183,
             "column" : 26,
             "source_fragment" : "= hdr.ipv4.srcAddr; ..."
           },
@@ -8286,10 +8286,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [15],
-          "actions" : ["border181"],
-          "base_default_next" : "tbl_border186",
+          "actions" : ["border183"],
+          "base_default_next" : "tbl_border188",
           "next_tables" : {
-            "border181" : "tbl_border186"
+            "border183" : "tbl_border188"
           },
           "default_entry" : {
             "action_id" : 15,
@@ -8299,11 +8299,11 @@
           }
         },
         {
-          "name" : "tbl_border184",
+          "name" : "tbl_border186",
           "id" : 14,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 184,
+            "line" : 186,
             "column" : 26,
             "source_fragment" : "="
           },
@@ -8315,10 +8315,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [16],
-          "actions" : ["border184"],
-          "base_default_next" : "tbl_border186",
+          "actions" : ["border186"],
+          "base_default_next" : "tbl_border188",
           "next_tables" : {
-            "border184" : "tbl_border186"
+            "border186" : "tbl_border188"
           },
           "default_entry" : {
             "action_id" : 16,
@@ -8328,11 +8328,11 @@
           }
         },
         {
-          "name" : "tbl_border186",
+          "name" : "tbl_border188",
           "id" : 15,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 186,
+            "line" : 188,
             "column" : 12,
             "source_fragment" : "bl3.write(meta.index_bl3, ipToWrite)"
           },
@@ -8344,10 +8344,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [18],
-          "actions" : ["border186"],
+          "actions" : ["border188"],
           "base_default_next" : "tbl_increment_black_list_count",
           "next_tables" : {
-            "border186" : "tbl_increment_black_list_count"
+            "border188" : "tbl_increment_black_list_count"
           },
           "default_entry" : {
             "action_id" : 18,
@@ -8361,7 +8361,7 @@
           "id" : 16,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 189,
+            "line" : 191,
             "column" : 12,
             "source_fragment" : "increment_black_list_count()"
           },
@@ -8390,7 +8390,7 @@
           "id" : 17,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 191,
+            "line" : 193,
             "column" : 12,
             "source_fragment" : "drop()"
           },
@@ -8419,7 +8419,7 @@
           "id" : 18,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 193,
+            "line" : 195,
             "column" : 12,
             "source_fragment" : "drop()"
           },
@@ -8490,16 +8490,42 @@
               }
             }
           },
-          "true_next" : "tbl_verify_traffic_source",
-          "false_next" : "node_7"
+          "true_next" : "node_4",
+          "false_next" : "node_8"
         },
         {
-          "name" : "node_5",
+          "name" : "node_4",
           "id" : 1,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 138,
+            "line" : 136,
             "column" : 15,
+            "source_fragment" : "standard_metadata.ingress_port == 9w2"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "==",
+              "left" : {
+                "type" : "field",
+                "value" : ["standard_metadata", "ingress_port"]
+              },
+              "right" : {
+                "type" : "hexstr",
+                "value" : "0x0002"
+              }
+            }
+          },
+          "false_next" : null,
+          "true_next" : "tbl_verify_traffic_source"
+        },
+        {
+          "name" : "node_6",
+          "id" : 2,
+          "source_info" : {
+            "filename" : "border.p4",
+            "line" : 139,
+            "column" : 19,
             "source_fragment" : "meta.blDiff == 0"
           },
           "expression" : {
@@ -8520,11 +8546,11 @@
           "true_next" : "tbl_drop"
         },
         {
-          "name" : "node_7",
-          "id" : 2,
+          "name" : "node_8",
+          "id" : 3,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 141,
+            "line" : 143,
             "column" : 19,
             "source_fragment" : "hdr.ctrl.isValid() && hdr.ctrl.flag == ControlMessageType.CONTROL"
           },
@@ -8559,15 +8585,15 @@
               }
             }
           },
-          "true_next" : "tbl_border147",
+          "true_next" : "tbl_border149",
           "false_next" : "tbl_drop_1"
         },
         {
-          "name" : "node_9",
-          "id" : 3,
+          "name" : "node_10",
+          "id" : 4,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 153,
+            "line" : 155,
             "column" : 15,
             "source_fragment" : "meta.value_bl0 == 0 && meta.addedToBl == 0"
           },
@@ -8605,15 +8631,15 @@
               }
             }
           },
-          "true_next" : "tbl_border154",
-          "false_next" : "tbl_border157"
+          "true_next" : "tbl_border156",
+          "false_next" : "tbl_border159"
         },
         {
-          "name" : "node_13",
-          "id" : 4,
+          "name" : "node_14",
+          "id" : 5,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 162,
+            "line" : 164,
             "column" : 15,
             "source_fragment" : "meta.value_bl1 == 0 && meta.addedToBl == 0"
           },
@@ -8651,15 +8677,15 @@
               }
             }
           },
-          "true_next" : "tbl_border163",
-          "false_next" : "tbl_border166"
+          "true_next" : "tbl_border165",
+          "false_next" : "tbl_border168"
         },
         {
-          "name" : "node_17",
-          "id" : 5,
+          "name" : "node_18",
+          "id" : 6,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 171,
+            "line" : 173,
             "column" : 15,
             "source_fragment" : "meta.value_bl2 == 0 && meta.addedToBl == 0"
           },
@@ -8697,15 +8723,15 @@
               }
             }
           },
-          "true_next" : "tbl_border172",
-          "false_next" : "tbl_border175"
+          "true_next" : "tbl_border174",
+          "false_next" : "tbl_border177"
         },
         {
-          "name" : "node_21",
-          "id" : 6,
+          "name" : "node_22",
+          "id" : 7,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 180,
+            "line" : 182,
             "column" : 15,
             "source_fragment" : "meta.value_bl3 == 0 && meta.addedToBl == 0"
           },
@@ -8743,8 +8769,8 @@
               }
             }
           },
-          "true_next" : "tbl_border181",
-          "false_next" : "tbl_border184"
+          "true_next" : "tbl_border183",
+          "false_next" : "tbl_border186"
         }
       ]
     },
@@ -8753,7 +8779,7 @@
       "id" : 1,
       "source_info" : {
         "filename" : "border.p4",
-        "line" : 202,
+        "line" : 204,
         "column" : 8,
         "source_fragment" : "MyEgress"
       },
@@ -8764,7 +8790,7 @@
           "id" : 19,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 242,
+            "line" : 244,
             "column" : 10,
             "source_fragment" : "count_responses"
           },
@@ -8805,7 +8831,7 @@
             {
               "source_info" : {
                 "filename" : "border.p4",
-                "line" : 252,
+                "line" : 254,
                 "column" : 12,
                 "source_fragment" : "(0, 53) : sketch_count_border()"
               },
@@ -8832,7 +8858,7 @@
           "id" : 20,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 259,
+            "line" : 261,
             "column" : 8,
             "source_fragment" : "mark_suspicious_traffic()"
           },
@@ -8845,9 +8871,9 @@
           "direct_meters" : null,
           "action_ids" : [21],
           "actions" : ["MyEgress.mark_suspicious_traffic"],
-          "base_default_next" : "node_32",
+          "base_default_next" : "node_33",
           "next_tables" : {
-            "MyEgress.mark_suspicious_traffic" : "node_32"
+            "MyEgress.mark_suspicious_traffic" : "node_33"
           },
           "default_entry" : {
             "action_id" : 21,
@@ -8861,7 +8887,7 @@
           "id" : 21,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 261,
+            "line" : 263,
             "column" : 12,
             "source_fragment" : "encapsulate_ctrl_hdr()"
           },
@@ -8889,11 +8915,11 @@
       "action_profiles" : [],
       "conditionals" : [
         {
-          "name" : "node_32",
-          "id" : 7,
+          "name" : "node_33",
+          "id" : 8,
           "source_info" : {
             "filename" : "border.p4",
-            "line" : 260,
+            "line" : 262,
             "column" : 11,
             "source_fragment" : "meta.suspicious == 1"
           },
