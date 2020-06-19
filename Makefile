@@ -1,14 +1,14 @@
 setup:
 	# make sure that we have the latest images
-	docker pull khooi8913/debian_networking:sysstat
+	docker pull khooi8913/debian_networking:latest
 	docker pull khooi8913/bmv2:sysstat
 	docker pull khooi8913/grafana:dida
 
 	# spin up the containers
-	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:sysstat /bin/bash
-	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:sysstat /bin/bash
-	docker run -it --privileged -d -t --name attacker -v $(PWD):/root khooi8913/debian_networking:sysstat /bin/bash
-	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:sysstat /bin/bash
+	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
+	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
+	docker run -it --privileged -d -t --name attacker -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
+	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
 	docker run -it --privileged -d -t --name access -v $(PWD):/root khooi8913/bmv2:sysstat /bin/bash
 	docker run -it --privileged -d -t --name border -v $(PWD):/root khooi8913/bmv2:sysstat /bin/bash
 	docker run -it -d -t --name grafana -p 3000:3000 khooi8913/grafana:dida 
@@ -94,9 +94,11 @@ setup:
 	docker exec attacker bash -c "ping www.google.com -c 1"
 	
 	# # run iperf3
-	docker exec attacker bash -c "iperf3 -s &"
-	docker exec host1 bash -c "iperf3 -c 192.168.1.3"
-	docker exec host2 bash -c "iperf3 -c 192.168.1.3"
+	docker exec host2 bash -c "iperf3 -s &"
+	docker exec host1 bash -c "iperf3 -c 192.168.1.2 -t 500"
+
+# attack:
+# 	echo "attack"
 
 
 teardown:
