@@ -5,7 +5,7 @@ echo "Start SAR in background mode"
 sar -n DEV 1 10000 > $sar_out &
 
 # create database
-curl -XPOST 'http://localhost:8086/query' --data-urlencode "q=CREATE DATABASE "${device}""
+curl -XPOST 'http://172.17.0.1:8086/query' --data-urlencode "q=CREATE DATABASE "${device}""
 
 ifaces=( $(ip addr list | awk -F': ' '/^[0-9]/ && $2 != "lo" && $2 != "eth0" {print $2}'))
 
