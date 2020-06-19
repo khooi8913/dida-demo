@@ -98,7 +98,7 @@ setup:
 	docker exec host1 bash -c "iperf3 -c 192.168.1.2 -t 500"
 
 # attack:
-# 	echo "attack"
+	# docker exec attacker tcpreplay -l 1000 -M 500 -i veth0 dns_amp_june19.pcap
 
 
 teardown:
