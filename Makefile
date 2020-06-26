@@ -98,10 +98,15 @@ setup:
 	docker exec host1 bash -c "iperf3 -c 192.168.1.2 -t 500"
 
 attack:
-	docker exec attacker tcpreplay -M 500 -i veth0 dns_amp_june19.pcap
+	docker exec attacker tcpreplay -M 80 -i veth0 dns_amp_june19.pcap
+
+browse-internet:
+	docker exec host1 bash -c "HOSTNAME=host1 && ./browse.sh"
+	docker exec host2 bash -c "HOSTNAME=host2 && ./browse.sh"
 
 
 teardown:
 	docker stop host1 host2 attacker access border internet grafana
 	docker rm host1 host2 attacker access border internet grafana
 	rm -f host*.log *.out
+	sudo rm -rf host*
