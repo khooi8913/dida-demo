@@ -93,9 +93,10 @@ setup:
 	docker exec attacker bash -c "ping 1.1.1.1 -c 1"
 	docker exec attacker bash -c "ping www.google.com -c 1"
 	
-	# # run iperf3
+iperf3:
 	docker exec host2 bash -c "iperf3 -s &"
 	docker exec host1 bash -c "iperf3 -c 192.168.1.2 -t 500"
+
 
 attack:
 	docker exec attacker tcpreplay -M 80 -i veth0 dns_amp_june19.pcap
@@ -103,7 +104,6 @@ attack:
 browse-internet:
 	docker exec host1 bash -c "HOSTNAME=host1 && ./browse.sh"
 	docker exec host2 bash -c "HOSTNAME=host2 && ./browse.sh"
-
 
 teardown:
 	docker stop host1 host2 attacker access border internet grafana
