@@ -110,7 +110,7 @@ set-bandwidth:
 	docker exec attacker bash -c "tcset veth0 --rate 500Mbps"
 
 attack:
-	docker exec attacker tcpreplay -M 500 -i veth0 dns_amp_june19.pcap
+	docker exec attacker tcpreplay -M 300 -i veth0 dns_amp_june19.pcap
 
 browse-internet:
 	docker exec host1 bash -c "HOSTNAME=host1 && ./browse.sh"
