@@ -2,7 +2,7 @@ setup:
 	# make sure that we have the latest images
 	docker pull khooi8913/debian_networking:tc
 	docker pull khooi8913/bmv2:tc
-	docker pull khooi8913/grafana:dida
+	docker pull khooi8913/grafana:sigcomm2020
 
 	# spin up the containers
 	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
@@ -11,7 +11,7 @@ setup:
 	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
 	docker run -it --privileged -d -t --name access -v $(PWD):/root khooi8913/bmv2:tc /bin/bash
 	docker run -it --privileged -d -t --name border -v $(PWD):/root khooi8913/bmv2:tc /bin/bash
-	docker run -it -d -t --name grafana -p 3000:3000 khooi8913/grafana:dida 
+	docker run -it -d -t --name grafana -p 3000:3000 khooi8913/grafana:sigcomm2020
 
 	# remove the existing interface
 	docker exec host1 ip link delete eth0
@@ -114,7 +114,7 @@ attack:
 
 browse-internet:
 	docker exec host1 bash -c "HOSTNAME=host1 && ./browse.sh"
-	docker exec host2 bash -c "HOSTNAME=host2 && ./browse.sh"
+	#docker exec host2 bash -c "HOSTNAME=host2 && ./browse.sh"
 
 teardown:
 	docker stop host1 host2 attacker access border internet grafana
