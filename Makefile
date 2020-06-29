@@ -1,16 +1,16 @@
 setup:
 	# make sure that we have the latest images
-	docker pull khooi8913/debian_networking:latest
-	docker pull khooi8913/bmv2:sysstat
+	docker pull khooi8913/debian_networking:tc
+	docker pull khooi8913/bmv2:tc
 	docker pull khooi8913/grafana:dida
 
 	# spin up the containers
-	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
-	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
-	docker run -it --privileged -d -t --name attacker -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
-	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:latest /bin/bash
-	docker run -it --privileged -d -t --name access -v $(PWD):/root khooi8913/bmv2:sysstat /bin/bash
-	docker run -it --privileged -d -t --name border -v $(PWD):/root khooi8913/bmv2:sysstat /bin/bash
+	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
+	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
+	docker run -it --privileged -d -t --name attacker -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
+	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
+	docker run -it --privileged -d -t --name access -v $(PWD):/root khooi8913/bmv2:tc /bin/bash
+	docker run -it --privileged -d -t --name border -v $(PWD):/root khooi8913/bmv2:tc /bin/bash
 	docker run -it -d -t --name grafana -p 3000:3000 khooi8913/grafana:dida 
 
 	# remove the existing interface
@@ -97,9 +97,20 @@ iperf3:
 	docker exec host2 bash -c "iperf3 -s &"
 	docker exec host1 bash -c "iperf3 -c 192.168.1.2 -t 500"
 
+set-bandwidth:
+	docker exec host1 bash -c "tcset veth0 --rate 100Mbps"
+	docker exec host2 bash -c "tcset veth0 --rate 100Mbps"
+	docker exec access bash -c "tcset port1 --rate 100Mbps"
+	docker exec access bash -c "tcset port2 --rate 100Mbps"
+	docker exec access bash -c "tcset port3 --rate 500Mbps"
+	docker exec border bash -c "tcset port1 --rate 500Mbps"
+	docker exec border bash -c "tcset port2 --rate 500Mbps"
+	docker exec internet bash -c "tcset internet1 --rate 500Mbps"
+	docker exec internet bash -c "tcset internet2 --rate 500Mbps"
+	docker exec attacker bash -c "tcset veth0 --rate 500Mbps"
 
 attack:
-	docker exec attacker tcpreplay -M 80 -i veth0 dns_amp_june19.pcap
+	docker exec attacker tcpreplay -M 500 -i veth0 dns_amp_june19.pcap
 
 browse-internet:
 	docker exec host1 bash -c "HOSTNAME=host1 && ./browse.sh"
