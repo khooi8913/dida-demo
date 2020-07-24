@@ -1,20 +1,21 @@
 setup:
 	# make sure that we have the latest images
 	docker pull khooi8913/debian_networking:tc
+	docker pull khooi8913/debian_networking:x11
 	docker pull khooi8913/bmv2:tc
 	docker pull khooi8913/grafana:sigcomm2020
 
 	# spin up the containers
-	docker run -it --privileged -d -t --name host1 -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
-	docker run -it --privileged -d -t --name host2 -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
-	docker run -it --privileged -d -t --name attacker -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
-	docker run -it --privileged -d -t --name internet -v $(PWD):/root khooi8913/debian_networking:tc /bin/bash
-	docker run -it --privileged -d -t --name access -v $(PWD):/root khooi8913/bmv2:tc /bin/bash
-	docker run -it --privileged -d -t --name border -v $(PWD):/root khooi8913/bmv2:tc /bin/bash
+	docker run -it --privileged -d -t --name host1 --shm-size=2g -p 2222:22 -v $(PWD):/demo khooi8913/debian_networking:x11 /bin/bash
+	docker run -it --privileged -d -t --name host2 -v $(PWD):/demo khooi8913/debian_networking:tc /bin/bash
+	docker run -it --privileged -d -t --name attacker -v $(PWD):/demo khooi8913/debian_networking:tc /bin/bash
+	docker run -it --privileged -d -t --name internet -v $(PWD):/demo khooi8913/debian_networking:tc /bin/bash
+	docker run -it --privileged -d -t --name access -v $(PWD):/demo khooi8913/bmv2:tc /bin/bash
+	docker run -it --privileged -d -t --name border -v $(PWD):/demo khooi8913/bmv2:tc /bin/bash
 	docker run -it -d -t --name grafana -p 3000:3000 khooi8913/grafana:sigcomm2020
 
 	# remove the existing interface
-	docker exec host1 ip link delete eth0
+	# docker exec host1 ip link delete eth0
 	docker exec host2 ip link delete eth0
 	docker exec attacker ip link delete eth0
 	# docker exec access ip link delete eth0
@@ -38,15 +39,16 @@ setup:
 	docker exec attacker ip addr add 192.168.1.3/24 dev veth0
 	
 	# host default route configuration
+	docker exec host1 ip route del default 
 	docker exec host1 ip route add default via 192.168.1.254
 	docker exec host2 ip route add default via 192.168.1.254
 	docker exec attacker ip route add default via 192.168.1.254
 
 	# setup access router
-	docker exec access bash -c "simple_switch -i 1@port1 -i 2@port2 -i 3@port3 access.json &"
+	docker exec access bash -c "simple_switch -i 1@port1 -i 2@port2 -i 3@port3 /demo/access.json &"
 
 	# setup border router
-	docker exec border bash -c "simple_switch -i 1@port1 -i 2@port2 border.json &"
+	docker exec border bash -c "simple_switch -i 1@port1 -i 2@port2 /demo/border.json &"
 	
 	# setup internet router
 	docker exec internet ip link add name br0 type bridge
@@ -77,13 +79,16 @@ setup:
 	docker exec attacker ethtool -K veth0 rx off tx off
 
 	# configure access and border
-	docker exec access bash -c "simple_switch_CLI < access.config"
-	docker exec border bash -c "simple_switch_CLI < border.config"
+	docker exec access bash -c "simple_switch_CLI < /demo/access.config"
+	docker exec border bash -c "simple_switch_CLI < /demo/border.config"
+
+	# start ssh on host1
+	docker exec host1 bash -c "/usr/sbin/sshd && tail -f /dev/null &"
 
 	# monitor
-	docker exec access bash -c "HOSTNAME=access; bash monitor.sh > /tmp/monitor.log &"
-	docker exec border bash -c "HOSTNAME=border; bash monitor.sh > /tmp/monitor.log &"
-	docker exec internet bash -c "HOSTNAME=internet; bash monitor.sh > /tmp/monitor.log &"
+	docker exec access bash -c "HOSTNAME=access; bash /demo/monitor.sh > /tmp/monitor.log &"
+	docker exec border bash -c "HOSTNAME=border; bash /demo/monitor.sh > /tmp/monitor.log &"
+	docker exec internet bash -c "HOSTNAME=internet; bash /demo/monitor.sh > /tmp/monitor.log &"
 
 	# test internet connectivity
 	docker exec host1 bash -c "ping 1.1.1.1 -c 1"
@@ -110,11 +115,11 @@ iperf3:
 	docker exec host2 bash -c "iperf3 -c 192.168.1.1 -t 500"
 
 attack:
-	docker exec attacker tcpreplay -M 300 -i veth0 dns_amp_june19.pcap
+	docker exec attacker tcpreplay -M 300 -i veth0 /demo/dns_amp_june19.pcap
 
 browse-internet:
-	docker exec host1 bash -c "HOSTNAME=host1 && ./browse.sh"
-	#docker exec host2 bash -c "HOSTNAME=host2 && ./browse.sh"
+	docker exec host1 bash -c "HOSTNAME=host1 && /demo/browse.sh"
+	#docker exec host2 bash -c "HOSTNAME=host2 && /demo/browse.sh"
 
 teardown:
 	docker stop host1 host2 attacker access border internet grafana
